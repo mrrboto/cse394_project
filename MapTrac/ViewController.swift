@@ -13,7 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "grad_green.jpg")!)
+        //let backgroundImage = UIImageView(frame: UIScreen.mainScreen().bounds)
+        //backgroundImage.image = UIImage(named: "green_bg.png")
+        //self.view.insertSubview(backgroundImage, atIndex: 0)
+        
     }
 
     override func didReceiveMemoryWarning() {

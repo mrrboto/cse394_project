@@ -16,13 +16,121 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knB-bt-gXZ">
+                                <rect key="frame" x="87" y="190" width="147" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Good List" backgroundImage="green_bt.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="I7V-yk-4KR" kind="push" id="XsH-JU-zVu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yr3-qb-1mf">
+                                <rect key="frame" x="87" y="246" width="147" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Bad List" backgroundImage="red_bt.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="AVF-sn-kzI" kind="push" id="aUc-yc-WIT"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="knB-bt-gXZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bBd-RM-1qm"/>
+                            <constraint firstItem="Yr3-qb-1mf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eLN-CQ-Pcn"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Shi-gr-Bih"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="432" y="153"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JEm-UE-Wiy">
+            <objects>
+                <viewController id="ZxG-Uh-V8c" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5SX-bJ-fke"/>
+                        <viewControllerLayoutGuide type="bottom" id="dn2-2O-ZHe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e75-r4-yhq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="267-IP-1UE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="432" y="837"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UMV-da-t5B">
+            <objects>
+                <viewController id="lef-zb-ceh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eFK-9x-3Uw"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZSL-Aj-M2l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EqS-xA-uMo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Hl-td-HqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="837" y="837"/>
+        </scene>
+        <!--Bad List-->
+        <scene sceneID="7YV-jf-MET">
+            <objects>
+                <viewController id="AVF-sn-kzI" customClass="BadController" customModule="MapTrac" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RLf-l6-aG2"/>
+                        <viewControllerLayoutGuide type="bottom" id="IZZ-t7-18r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wh6-kI-dYu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BAD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FS-uT-yUS">
+                                <rect key="frame" x="143" y="43" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Bad List" id="Vjs-nH-vX1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uD4-hm-1B8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1" y="837"/>
+        </scene>
+        <!--Good List-->
+        <scene sceneID="wQQ-Dx-ggF">
+            <objects>
+                <viewController id="I7V-yk-4KR" customClass="GoodController" customModule="MapTrac" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aff-Wf-SPV"/>
+                        <viewControllerLayoutGuide type="bottom" id="NVg-IW-fWb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j4U-o4-FpS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Good List" id="IGV-i3-gzA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DqB-MU-3Ww" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="837" y="154"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zc7-he-nZj">
@@ -41,4 +149,8 @@
             <point key="canvasLocation" x="6" y="153"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="green_bt.png" width="148" height="46"/>
+        <image name="red_bt.png" width="148" height="46"/>
+    </resources>
 </document>
