@@ -1,5 +1,5 @@
 //
-//  Place.swift
+//  BadData.swift
 //  MapTrac
 //
 //  Created by user on 4/18/16.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Place: NSManagedObject {
+class BadData: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

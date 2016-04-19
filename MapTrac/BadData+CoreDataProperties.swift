@@ -1,5 +1,5 @@
 //
-//  Place+CoreDataProperties.swift
+//  BadData+CoreDataProperties.swift
 //  MapTrac
 //
 //  Created by user on 4/18/16.
@@ -12,12 +12,11 @@
 import Foundation
 import CoreData
 
-extension Place {
+extension BadData {
 
     @NSManaged var name: String?
-    @NSManaged var pic: NSData?
     @NSManaged var descript: String?
     @NSManaged var location: String?
-    @NSManaged var tag: String?
+    @NSManaged var pic: NSData?
 
 }
