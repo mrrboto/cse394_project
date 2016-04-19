@@ -24,7 +24,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="I7V-yk-4KR" kind="push" id="XsH-JU-zVu"/>
+                                    <segue destination="XX8-Jw-vsh" kind="push" id="bKe-u6-vgb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yr3-qb-1mf">
@@ -89,48 +89,30 @@
         <!--Bad List-->
         <scene sceneID="7YV-jf-MET">
             <objects>
-                <viewController id="AVF-sn-kzI" customClass="BadController" customModule="MapTrac" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="RLf-l6-aG2"/>
-                        <viewControllerLayoutGuide type="bottom" id="IZZ-t7-18r"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Wh6-kI-dYu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BAD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FS-uT-yUS">
-                                <rect key="frame" x="143" y="43" width="34" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Bad List" id="Vjs-nH-vX1"/>
-                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uD4-hm-1B8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1" y="837"/>
-        </scene>
-        <!--Good List-->
-        <scene sceneID="wQQ-Dx-ggF">
-            <objects>
-                <viewController id="I7V-yk-4KR" customClass="GoodController" customModule="MapTrac" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Aff-Wf-SPV"/>
-                        <viewControllerLayoutGuide type="bottom" id="NVg-IW-fWb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="j4U-o4-FpS">
+                <viewController id="AVF-sn-kzI" customClass="BadController" customModule="MapTrac" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0bR-Al-7ys">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Good List" id="IGV-i3-gzA"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uWg-ZG-fav">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uWg-ZG-fav" id="wK9-SN-fL3">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Bad List" id="Vjs-nH-vX1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TSn-gr-w8y"/>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DqB-MU-3Ww" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="837" y="154"/>
+            <point key="canvasLocation" x="6" y="837"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zc7-he-nZj">
@@ -147,6 +129,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIT-Eq-t6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6" y="153"/>
+        </scene>
+        <!--Good List-->
+        <scene sceneID="Zse-g0-0sb">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yVK-xH-ERo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="XX8-Jw-vsh" customClass="GoodController" customModule="MapTrac" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NgS-VF-oj2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="vZD-2Q-qku">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vZD-2Q-qku" id="UxO-Ug-TWj">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Good List" id="HiR-vq-gW0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VQ6-uc-IXx"/>
+                    </navigationItem>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="837" y="153"/>
         </scene>
     </scenes>
     <resources>

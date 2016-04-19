@@ -7,8 +7,38 @@
 //
 
 import UIKit
+import CoreData
 
-class GoodController: UIViewController {
+class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
+    
+    @IBOutlet weak var placeTable: UITableView!
+    
+    var place:Place? = nil
+    
+    var context: NSManagedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
+    var dataViewController: NSFetchedResultsController = NSFetchedResultsController()
+    
+    func getFetchResultsController() -> NSFetchedResultsController {
+        
+        dataViewController = NSFetchedResultsController(fetchRequest: listFetchRequest(), managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return dataViewController
+        
+    }
+    
+    func listFetchRequest() -> NSFetchRequest {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Place")
+        let sortDescripter = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescripter]
+        return fetchRequest
+        
+    }
+    
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,8 +46,14 @@ class GoodController: UIViewController {
         let backgroundImage = UIImageView(frame: UIScreen.mainScreen().bounds)
         backgroundImage.image = UIImage(named: "green_bg.png")
         self.view.insertSubview(backgroundImage, atIndex: 0)
-
-        // Do any additional setup after loading the view.
+        
+        dataViewController = getFetchResultsController()
+        
+        dataViewController.delegate = self
+        do {
+            try dataViewController.performFetch()
+        } catch _ {
+        }
     }
 
     override func didReceiveMemoryWarning() {
