@@ -10,8 +10,16 @@ import UIKit
 
 class CellView: UITableViewCell {
     
-    @IBOutlet weak var placeName: UILabel!
-    @IBOutlet weak var placeImage: UIImageView!
+    //@IBOutlet weak var placeName: UILabel!
+    //@IBOutlet weak var placeImage: UIImageView!
+    
+    @IBOutlet weak var goodName: UILabel!
+    @IBOutlet weak var goodImage: UIImageView!
+
+    @IBOutlet weak var badName: UILabel!
+    @IBOutlet weak var badImage: UIImageView!
+
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

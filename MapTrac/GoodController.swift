@@ -11,7 +11,8 @@ import CoreData
 
 class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     
-    @IBOutlet weak var placeTable: UITableView!
+    @IBOutlet weak var goodTable: UITableView!
+   
     
     var place:GoodData? = nil
     
@@ -29,7 +30,7 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     
     func listFetchRequest() -> NSFetchRequest {
         
-        let fetchRequest = NSFetchRequest(entityName: "Place")
+        let fetchRequest = NSFetchRequest(entityName: "GoodData")
         let sortDescripter = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortDescripter]
         return fetchRequest
@@ -39,6 +40,7 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //green background for page
         let backgroundImage = UIImageView(frame: UIScreen.mainScreen().bounds)
         backgroundImage.image = UIImage(named: "green_bg.png")
         self.view.insertSubview(backgroundImage, atIndex: 0)
@@ -59,7 +61,7 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        self.placeTable.reloadData()
+        self.goodTable.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -75,15 +77,15 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //add custom table view and change PlaceTableViewCell
-        let cell = self.placeTable.dequeueReusableCellWithIdentifier("placeCell", forIndexPath: indexPath) as! PlaceTableViewCell
+        let cell = self.goodTable.dequeueReusableCellWithIdentifier("goodCell", forIndexPath: indexPath) as! CellView
         let placeInfo = dataViewController.objectAtIndexPath(indexPath) as! GoodData
         
         var name = placeInfo.name
         var descript = placeInfo.descript
         var pic = placeInfo.pic
         
-        cell.placeName.text = name
-        cell.placeImage.image = UIImage(data: pic!)
+        cell.goodName.text = name
+        cell.goodImage.image = UIImage(data: pic!)
         
         return cell
     }
@@ -106,13 +108,13 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     
     override func  prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "nextView"
+        if segue.identifier == "goodView"
         {
             let cell = sender as! UITableViewCell
-            let indexPath = self.placeTable.indexPathForCell(cell)
+            let indexPath = self.goodTable.indexPathForCell(cell)
             
             //change DetailViewController to "Good" class
-            let dest: DetailViewController =  segue.destinationViewController as! DetailViewController
+            let dest: GoodView =  segue.destinationViewController as! GoodView
             let row = dataViewController.objectAtIndexPath(indexPath!) as! GoodData
             dest.nItem = row
             
