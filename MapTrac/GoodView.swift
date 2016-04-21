@@ -10,9 +10,8 @@ import UIKit
 import CoreData
 import MapKit
 
-class GoodView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class GoodView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
-
 
     @IBOutlet weak var placeName: UITextField!
     @IBOutlet weak var placeImage: UIImageView!
@@ -27,6 +26,10 @@ class GoodView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     var viewContext: NSManagedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     var nItem:GoodData? = nil
+    
+    //map items from CLLocationManger
+    var currentLocation = CLLocation()
+    var locManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +43,32 @@ class GoodView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             placeName.text = nItem?.name
             placeDescript.text = nItem?.descript
             placeImage.image = UIImage(data: (nItem?.pic)!)
-            
-            
         }
+        locManager.delegate = self
+        locManager.desiredAccuracy = kCLLocationAccuracyBest
+        locManager.distanceFilter = kCLDistanceFilterNone
+        locManager.requestWhenInUseAuthorization()
+        locManager.startUpdatingLocation()
+        
+        placeMap.setUserTrackingMode(.Follow, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+       
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.last!
+        print("location updated: \(currentLocation.coordinate.latitude)")
+        
+        locManager.stopUpdatingLocation()
+        
+        print("SOMETHING \(currentLocation.coordinate.latitude)")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("failed with error")
     }
     
     @IBAction func addImage(sender: UIButton) {
@@ -62,6 +83,7 @@ class GoodView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @IBAction func saveData(sender: UIBarButtonItem) {
     
+        //add catch for no image + address section
         if nItem == nil
         {
             let context = self.context
