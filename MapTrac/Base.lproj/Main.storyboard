@@ -76,7 +76,7 @@
                                 <rect key="frame" x="20" y="275" width="280" height="137"/>
                             </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="&lt;add brief description&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Eaq-is-Mp5">
-                                <rect key="frame" x="0.0" y="420" width="320" height="128"/>
+                                <rect key="frame" x="0.0" y="420" width="320" height="134"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -220,7 +220,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hQx-bc-NI4">
                                 <rect key="frame" x="12" y="259" width="288" height="159"/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ua-qI-ltx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ua-qI-ltx">
                                 <rect key="frame" x="79" y="72" width="162" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -234,6 +234,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6Ua-qI-ltx" firstAttribute="centerX" secondItem="pCF-gM-Ce3" secondAttribute="centerX" id="76s-ol-qXw"/>
                             <constraint firstItem="hQx-bc-NI4" firstAttribute="centerX" secondItem="pCF-gM-Ce3" secondAttribute="centerX" id="Jb3-Cv-kGY"/>
                             <constraint firstItem="7Pd-IE-9C0" firstAttribute="centerX" secondItem="pCF-gM-Ce3" secondAttribute="centerX" id="YNL-rn-zmf"/>
                             <constraint firstItem="MRI-MO-3PW" firstAttribute="centerX" secondItem="pCF-gM-Ce3" secondAttribute="centerX" id="fBa-mY-D30"/>

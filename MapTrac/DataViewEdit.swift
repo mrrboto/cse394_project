@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import MapKit
 
-class DataViewEdit: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class DataViewEdit: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
 
     @IBOutlet weak var placeName: UITextField!
@@ -53,7 +53,8 @@ class DataViewEdit: UIViewController, UIImagePickerControllerDelegate, UINavigat
         }
   
         self.view.addBackground(color!)
-      
+        placeName.delegate = self
+        placeDescript.delegate = self
         if nItem != nil {
             
             placeName.text = nItem?.name
@@ -76,6 +77,7 @@ class DataViewEdit: UIViewController, UIImagePickerControllerDelegate, UINavigat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         placeName.resignFirstResponder()
@@ -196,12 +198,30 @@ class DataViewEdit: UIViewController, UIImagePickerControllerDelegate, UINavigat
             let ent = NSEntityDescription.entityForName("Data", inManagedObjectContext: context)
             
             let nItem = Data(entity: ent!, insertIntoManagedObjectContext: context)
-            let imageData = UIImagePNGRepresentation(placeImage.image!)
             nItem.name = placeName.text!
             nItem.descript = placeDescript.text!
-            nItem.pic = imageData!
-            nItem.lat = String(format: "%f", lat!)
-            nItem.lon = String(format: "%f", lon!)
+           
+            if placeImage.image != nil
+            {
+                let imageData = UIImagePNGRepresentation(placeImage.image!)
+                nItem.pic = imageData!
+            }
+            else
+            {
+                showMessage("Choose a location image")
+                return
+            }
+            
+            if lat != nil
+            {
+                nItem.lat = String(format: "%f", lat!)
+                nItem.lon = String(format: "%f", lon!)
+            }
+            else
+            {
+                nItem.lat = String(format: "%f", 0.000)
+                nItem.lon = String(format: "%f", 0.000)
+            }
             
             if(lType == "Good List")
             {
@@ -236,6 +256,18 @@ class DataViewEdit: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     @IBAction func cancelData(sender: UIBarButtonItem) {
         navigationController!.popViewControllerAnimated(true)
+    }
+    
+    func showMessage(msg: String){
+        var alertController: UIAlertController!
+        
+        alertController = UIAlertController(title: "Missing Info", message: msg, preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        
+        alertController.addAction(okAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     
