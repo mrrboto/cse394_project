@@ -12,11 +12,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //let backgroundImage = UIImageView(frame: UIScreen.mainScreen().bounds)
-        //backgroundImage.image = UIImage(named: "green_bg.png")
-        //self.view.insertSubview(backgroundImage, atIndex: 0)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +19,20 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
+    @IBAction func listChoice(sender: AnyObject) {
+    performSegueWithIdentifier("listViewSegue", sender: sender)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "listViewSegue"){
+            let next = segue.destinationViewController as! ListViewController
+            
+            next.listType = (sender!.tag == 0) ? "Good List" : "Bad List"
+            //next.locations = self.locations
+        }
+    }
 
 }
 

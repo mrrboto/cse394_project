@@ -1,20 +1,21 @@
 //
-//  GoodController.swift
+//  ListViewController.swift
 //  MapTrac
 //
-//  Created by user on 4/16/16.
+//  Created by user on 4/22/16.
 //  Copyright © 2016 VAD. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
-    
-    @IBOutlet weak var goodTable: UITableView!
-   
-    
-    var place:GoodData? = nil
+class ListViewController: UIViewController, NSFetchedResultsControllerDelegate  {
+
+ 
+    @IBOutlet weak var tableView: UITableView!
+    var listType: String?
+    var place:Data? = nil
+    var color: String?
     
     var context: NSManagedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
@@ -30,38 +31,59 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     
     func listFetchRequest() -> NSFetchRequest {
         
-        let fetchRequest = NSFetchRequest(entityName: "GoodData")
-        let sortDescripter = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescripter]
-        return fetchRequest
+        if (listType == "Good List")
+        {
+            let list = "good"
+            let fetchRequest = NSFetchRequest(entityName: "Data")
+            let sortDescripter = NSSortDescriptor(key: "name", ascending: true)
+            fetchRequest.sortDescriptors = [sortDescripter]
+            fetchRequest.predicate = NSPredicate(format: "list = %@", list)
+            return fetchRequest
+        }
+        
+        else
+        {
+            let list = "bad"
+            let fetchRequest = NSFetchRequest(entityName: "Data")
+            let sortDescripter = NSSortDescriptor(key: "name", ascending: true)
+            fetchRequest.sortDescriptors = [sortDescripter]
+            fetchRequest.predicate = NSPredicate(format: "list = %@", list)
+            return fetchRequest
+        }
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //green background for page
-        let backgroundImage = UIImageView(frame: UIScreen.mainScreen().bounds)
-        backgroundImage.image = UIImage(named: "green_bg.png")
-        self.view.insertSubview(backgroundImage, atIndex: 0)
-        
+        if listType == "Good List"
+        {
+            color = "good"
+        }
+        else
+        {
+            color = "bad"
+        }
+        self.view.addBackground(color!)
+      
         dataViewController = getFetchResultsController()
-        
         dataViewController.delegate = self
         do {
             try dataViewController.performFetch()
         } catch _ {
         }
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
     }
     
+
+    
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        self.goodTable.reloadData()
+        self.tableView.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -76,16 +98,17 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        //add custom table view and change PlaceTableViewCell
-        let cell = self.goodTable.dequeueReusableCellWithIdentifier("goodCell", forIndexPath: indexPath) as! CellView
-        let placeInfo = dataViewController.objectAtIndexPath(indexPath) as! GoodData
-        
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("dataCell", forIndexPath: indexPath) as! CellView
+        let placeInfo = dataViewController.objectAtIndexPath(indexPath) as! Data
+            
         var name = placeInfo.name
         var descript = placeInfo.descript
         var pic = placeInfo.pic
-        
-        cell.goodName.text = name
-        cell.goodImage.image = UIImage(data: pic!)
+        //var lat = placeInfo.lat
+        //var lon = placeInfo.lon
+            
+        cell.cellName.text = name
+        cell.cellImage.image = UIImage(data: pic!)
         
         return cell
     }
@@ -96,8 +119,10 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle:   UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            let record = dataViewController.objectAtIndexPath(indexPath) as! GoodData
+        let record = dataViewController.objectAtIndexPath(indexPath) as! Data
+        
             context.deleteObject(record)
+            
             do {
                 try context.save()
             } catch _ {
@@ -108,30 +133,26 @@ class GoodController: UIViewController, NSFetchedResultsControllerDelegate {
     
     override func  prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "goodView"
+        if segue.identifier == "dataView"
         {
             let cell = sender as! UITableViewCell
-            let indexPath = self.goodTable.indexPathForCell(cell)
+            let indexPath = self.tableView.indexPathForCell(cell)
+            let dest: DataView =  segue.destinationViewController as! DataView
+   
+            let row = dataViewController.objectAtIndexPath(indexPath!) as! Data
+            let list = self.listType
             
-            //change DetailViewController to "Good" class
-            let dest: GoodView =  segue.destinationViewController as! GoodView
-            let row = dataViewController.objectAtIndexPath(indexPath!) as! GoodData
             dest.nItem = row
-            
+            dest.lType = listType
+        }
+        
+        else if segue.identifier == "addData"
+        {
+            let dest: DataViewEdit =  segue.destinationViewController as! DataViewEdit
+            dest.lType = listType
         }
         
     }
 
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
